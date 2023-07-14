@@ -20,7 +20,7 @@
     ];
 
     const corsAllowUrls = [
-      'https://github.com/',
+      'https://github.com/WorriedArrow/GM-Revived/releases/download/dev/index.js',
       'https://github-releases.githubusercontent.com/'
     ];
 
