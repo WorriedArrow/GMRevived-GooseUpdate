@@ -16,7 +16,8 @@
       'connect-src',
       'style-src',
       'img-src',
-      'font-src'
+      'font-src',
+      'script-src'
     ];
 
     const corsAllowUrls = [
@@ -25,23 +26,21 @@
     ];
 
     electron.session.defaultSession.webRequest.onHeadersReceived(({ responseHeaders, url }, done) => {
-      // let csp = responseHeaders['content-security-policy'];
+      let csp = responseHeaders['content-security-policy'];
 
-      // if (otherMod) { // Since patch v16, override other mod's onHeadersRecieved (Electron only allows 1 listener); because they rely on 0 CSP at all (GM just unrestricts some areas), remove it fully if we detect other mods
-      //   delete responseHeaders['content-security-policy'];
-      //   csp = null;
-      // }
+      if (otherMod) { // Since patch v16, override other mod's onHeadersRecieved (Electron only allows 1 listener); because they rely on 0 CSP at all (GM just unrestricts some areas), remove it fully if we detect other mods
+        delete responseHeaders['content-security-policy'];
+        csp = null;
+      }
 
-      // if (csp) {
-      //   for (let p of cspAllowAll) {
-      //     csp[0] = csp[0].replace(`${p}`, `${p} * blob: data:`); // * does not include data: URIs
-      //   }
+      if (csp) {
+        for (let p of cspAllowAll) {
+          csp[0] = csp[0].replace(`${p}`, `${p} * blob: data:`); // * does not include data: URIs
+        }
 
-      //   // Fix Discord's broken CSP which disallows unsafe-inline due to having a nonce (which they don't even use?)
-      //   csp[0] = csp[0].replace(/'nonce-.*?' /, '');
-      // }
-
-      delete responseHeaders['content-security-policy'];
+        // Fix Discord's broken CSP which disallows unsafe-inline due to having a nonce (which they don't even use?)
+        csp[0] = csp[0].replace(/'nonce-.*?' /, '');
+      }
 
       if (corsAllowUrls.some((x) => url.startsWith(x))) {
         responseHeaders['access-control-allow-origin'] = ['*'];
