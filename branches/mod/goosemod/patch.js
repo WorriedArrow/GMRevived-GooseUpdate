@@ -16,13 +16,12 @@
       'connect-src',
       'style-src',
       'img-src',
-      'font-src',
-      'script-src'
+      'font-src'
     ];
 
     const corsAllowUrls = [
-      'https://raw.githubusercontent.com/WorriedArrow/GM-Revived/dist-dev/index.js',
-      'https://github-releases.githubusercontent.com/'
+      'https://github.com/WorriedArrow/GM-Revived/releases/download/dev/index.js',
+      'https://objects.githubusercontent.com/'
     ];
 
     electron.session.defaultSession.webRequest.onHeadersReceived(({ responseHeaders, url }, done) => {
