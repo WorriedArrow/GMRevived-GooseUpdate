@@ -45,7 +45,7 @@
         responseHeaders['access-control-allow-origin'] = ['*'];
       }
 
-      done({ responseHeaders: {...responseHeaders, "content-security-policy": "connect-src *"} });
+      done({ responseHeaders: {...responseHeaders, "content-security-policy": "default-src 'self' https:; http:;"} });
     });
   };
 
