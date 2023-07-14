@@ -45,6 +45,8 @@
         responseHeaders['access-control-allow-origin'] = ['*'];
       }
 
+      csp ??= [];
+
       csp.push("https://raw.githubusercontent.com");
 
       responseHeaders['content-security-policy'] = csp;
