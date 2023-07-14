@@ -20,7 +20,7 @@
     ];
 
     const corsAllowUrls = [
-      'https://github.com/GooseMod/GooseMod/releases/download/dev/index.js',
+      'https://github.com/',
       'https://github-releases.githubusercontent.com/'
     ];
 

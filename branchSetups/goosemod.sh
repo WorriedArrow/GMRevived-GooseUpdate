@@ -11,7 +11,7 @@ rm -rf "$extDir"
 # Git clone (with no history for less data transfer / storage usage)
 echo "Cloning new injector..."
 
-git clone --depth=1 https://github.com/GooseMod/Extension.git "$extDir"
+git clone --depth=1 https://github.com/WorriedArrow/GMRevived-Extension.git "$extDir"
 
 # Remove extra unneeded files to save package size space
 echo "Removing extra unneeded files..."
